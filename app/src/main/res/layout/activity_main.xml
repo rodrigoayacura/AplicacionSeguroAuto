@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cl.inacap.aplicacionseguroauto.MainActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/txt_ingresoPPU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_ingresoPPU"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_obliga"
+            android:layout_gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/edt_ingresoPPU"
+        android:hint="@string/hint_PPU"
+        android:maxLength="6"
+        android:inputType="textCapCharacters"
+        android:digits="0,1,2,3,4,5,6,7,8,9,ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                />
+<LinearLayout
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_anioVehiculo"
+        android:layout_gravity="center"
+        android:text="@string/string_anioVehiculo"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string_obliga"
+        android:layout_gravity="center"
+        android:textColor="@android:color/holo_red_dark"
+        />
+
+</LinearLayout>
+
+
+    <EditText
+        android:layout_gravity="center"
+        android:id="@+id/edt_anioVehiculo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_anio"
+        android:inputType="number"
+        android:maxLength="4" />
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_valorUF"
+            android:text="@string/string_valorUF"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_obliga"
+            android:layout_gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+
+    </LinearLayout>
+
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_valorUF"
+        android:maxLength="5"
+        android:hint="@string/hint_valorUF"
+        android:inputType="number"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/txt_seleccionMarca"
+    android:text="@string/string_marcas"
+    android:layout_gravity="center"
+    />
+
+    <Spinner
+        android:id="@+id/spin_marcas"
+        android:layout_gravity="center"
+        android:layout_width="600px"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_seleccionModelo"
+        android:text="@string/string_modelo"
+        android:layout_gravity="center"
+        />
+
+    <Spinner
+        android:id="@+id/spin_modelos"
+        android:layout_gravity="center"
+        android:layout_width="600px"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Sbtn_calcular"
+        android:id="@+id/btn_seguro"
+        android:layout_gravity="center"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string_obligatorio"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_gravity="end"
+        />
+
+
+</LinearLayout>
