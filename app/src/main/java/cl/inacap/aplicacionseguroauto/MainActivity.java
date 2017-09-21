@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
             //Se verifica año del vehiculo en caso errado se emite Toast
             if (verificaAnio(anioVeh) == false){
-                Toast.makeText(getApplicationContext(),"El año no corresponde o esta mal ingresado",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"El año no corresponde",Toast.LENGTH_SHORT).show();
             }
             //Se verifica valor unidad de fomento en caso que se 0 se emite Toast
             if (verificaUF(unidadFomento) == false){
@@ -119,8 +120,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Se verifica que la patente haya sido ingresada con los valores AAAA55 ó AA5555
 
 
-        Pattern p = Pattern.compile("[A-Z]{2}[A-Z]{2}[0-9]{2}");
-        Pattern p2 = Pattern.compile("[A-Z]{2}[0-9]{2}[0-9]{2}");
+        Pattern p = Pattern.compile("[BCDFGHJKLPRSTVWXYZ]{4}[1-9]{1}[0-9]{1}");
+        Pattern p2 = Pattern.compile("([ABCEFGHDKLNPRSTUVXYZWM]){1}[ABCDEFGHIJKLNPRSTUVXYZ]{1}[1-9]{1}[0-9]{3}");
 
         Matcher m = p.matcher(ppu);
         Matcher m2 = p2.matcher(ppu);
@@ -146,13 +147,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public Boolean verificaAnio (int anio){
-        // Se verifica que el año del vehículo no se anterior a la construccion del primer auto
-        if (anio > 1768){
-            return true;
-        }else {
-            return false;
-        }
 
+        Calendar fecha = Calendar.getInstance();
+        int anioActual = fecha.get(Calendar.YEAR);
+        int anioMax = anioActual+1;
+
+
+        // Se verifica que el año del vehículo no seA anterior a la construccion del primer auto
+        if (anio > anioMax){
+            return false;
+        }else {
+            if (anio > 1984){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 
 }

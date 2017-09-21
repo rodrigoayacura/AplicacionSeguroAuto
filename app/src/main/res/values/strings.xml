@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AplicacionSeguroAuto</string>
     <string name="string_ingresoPPU">Ingrese Patente (PPU)</string>
-    <string name="hint_PPU">AA3456 ó AAAA33</string>
+    <string name="hint_PPU">AA1000 ó BBBB10</string>
     <string name="hint_anio">2017</string>
     <string name="hint_valorUF">26238</string>
     <string name="string_anioVehiculo"> Ingrese Año del Vehículo</string>
@@ -11,6 +11,7 @@
     <string name="string_modelo">Seleccione modelo Vehículo</string>
     <string name="string_obligatorio">Datos Obligatorios (*) </string>
     <string name="string_obliga">(*)</string>
+    <color name="noSeguro">#f00</color>
 
     <string-array name="array_Marcas">
         <item>Chevrolet</item>
@@ -21,7 +22,7 @@
 
     <string-array name="array_Ford">
         <item>Fiesta</item>
-        <item>Ford</item>
+        <item>Focus</item>
         <item>Fusion</item>
         <item>Mustang</item>
     </string-array>

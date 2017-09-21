@@ -72,9 +72,19 @@ public class ResultadoSeguro extends AppCompatActivity {
         montoUF.setText("Valor de la UF: "+valorFomento+" pesos");
         marcaCarro.setText("Marca del Vehículo: "+marcaVeh);
         modeloCarro.setText("Modelo del Vehículo: "+modeloVeh);
-        antiguo.setText("El Vehículo tiene una Antigüedad de: "+antiguedadVeh);
-        seguro.setText("El Vehículo "+asegurable);
-        montoSeguro.setText(valorSeguro(diferenciaAnios(anioVeh),valorFomento));
+        antiguo.setText("Antigüedad del Vehículo: "+antiguedadVeh);
+
+        if (asegurable == "es Asegurable"){
+            seguro.setText("El Vehículo "+asegurable);
+            montoSeguro.setText(valorSeguro(diferenciaAnios(anioVeh),valorFomento));
+
+        }else{
+            seguro.setText("El Vehículo "+asegurable);
+            seguro.setTextColor(getResources().getColor(R.color.noSeguro));
+            montoSeguro.setText(valorSeguro(diferenciaAnios(anioVeh),valorFomento));
+            montoSeguro.setTextColor(getResources().getColor(R.color.noSeguro));
+        }
+
         muestraImagen(asegurable);
 
     }
@@ -87,9 +97,9 @@ public class ResultadoSeguro extends AppCompatActivity {
         int anioActual = fecha.get(Calendar.YEAR);
         diferenciaAnio = anioActual - anioRegistro;
 
-        if (diferenciaAnio <1){
+        /*if (diferenciaAnio <1){
             diferenciaAnio = 1;
-        }
+        }*/
 
         return diferenciaAnio;
     }
@@ -99,10 +109,14 @@ public class ResultadoSeguro extends AppCompatActivity {
 
         String tiempo;
 
-        if (diferencia == 1){
+        if (diferencia < 1) {
+            tiempo = "Menos de 1 Año";
+        }else{
+            if (diferencia == 1){
             tiempo = diferencia + " Año";
-        }else {
-            tiempo = diferencia + " Años";
+            }else {
+                tiempo = diferencia + " Años";
+            }
         }
 
         return tiempo;
@@ -116,8 +130,8 @@ public class ResultadoSeguro extends AppCompatActivity {
 
         if (dif <= 10){
             validez = "es Asegurable";
-        }else {
-            validez = "No es Asegurable";
+            }else {
+            validez = "NO es Asegurable";
         }
 
         return validez;
@@ -126,6 +140,10 @@ public class ResultadoSeguro extends AppCompatActivity {
 
     public String valorSeguro (int dif, int uf){
         //Método para calcular el valor a pagar por el seguro del vehículo
+
+        if (dif <1){
+            dif = 1;
+        }
 
         String valorPago;
 

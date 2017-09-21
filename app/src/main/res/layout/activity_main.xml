@@ -5,10 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="cl.inacap.aplicacionseguroauto.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    >
+
+
 
     <LinearLayout
-        android:layout_gravity="center"
+        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -18,18 +27,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/string_ingresoPPU"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_gravity="center"
+            android:layout_gravity="left"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/string_obliga"
-            android:layout_gravity="center"
+            android:layout_gravity="left"
             android:textColor="@android:color/holo_red_dark"
             />
 
@@ -39,97 +44,30 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="left"
         android:id="@+id/edt_ingresoPPU"
         android:hint="@string/hint_PPU"
         android:maxLength="6"
         android:inputType="textCapCharacters"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:digits="0,1,2,3,4,5,6,7,8,9,ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 />
-<LinearLayout
-    android:layout_gravity="center"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_anioVehiculo"
-        android:layout_gravity="center"
-        android:text="@string/string_anioVehiculo"
-
+        android:id="@+id/txt_seleccionMarca"
+        android:text="@string/string_marcas"
+        android:layout_gravity="left"
+        android:paddingTop="20dp"
         />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/string_obliga"
-        android:layout_gravity="center"
-        android:textColor="@android:color/holo_red_dark"
-        />
-
-</LinearLayout>
-
-
-    <EditText
-        android:layout_gravity="center"
-        android:id="@+id/edt_anioVehiculo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_anio"
-        android:inputType="number"
-        android:maxLength="4" />
-
-    <LinearLayout
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_valorUF"
-            android:text="@string/string_valorUF"
-            android:layout_gravity="center"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/string_obliga"
-            android:layout_gravity="center"
-            android:textColor="@android:color/holo_red_dark"
-            />
-
-
-    </LinearLayout>
-
-
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/edt_valorUF"
-        android:maxLength="5"
-        android:hint="@string/hint_valorUF"
-        android:inputType="number"
-        android:layout_gravity="center"
-        />
-
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/txt_seleccionMarca"
-    android:text="@string/string_marcas"
-    android:layout_gravity="center"
-    />
 
     <Spinner
         android:id="@+id/spin_marcas"
-        android:layout_gravity="center"
-        android:layout_width="600px"
-        android:layout_height="wrap_content">
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:backgroundTint="@android:color/holo_green_dark">
 
     </Spinner>
 
@@ -139,25 +77,124 @@
         android:layout_height="wrap_content"
         android:id="@+id/txt_seleccionModelo"
         android:text="@string/string_modelo"
-        android:layout_gravity="center"
+        android:layout_gravity="left"
+        android:paddingTop="20dp"
         />
 
     <Spinner
         android:id="@+id/spin_modelos"
-        android:layout_gravity="center"
-        android:layout_width="600px"
-        android:layout_height="wrap_content">
+        android:layout_gravity="left"
+        android:layout_width="160dp"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:layout_height="wrap_content"
+
+        >
 
     </Spinner>
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Sbtn_calcular"
-        android:id="@+id/btn_seguro"
-        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_gravity="left">
+
+
+<LinearLayout
+    android:layout_gravity="left"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="20dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_anioVehiculo"
+        android:layout_gravity="left"
+        android:text="@string/string_anioVehiculo"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/string_obliga"
+        android:layout_gravity="left"
+        android:textColor="@android:color/holo_red_dark"
+        />
+
+</LinearLayout>
+
+
+    <EditText
+        android:id="@+id/edt_anioVehiculo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_anio"
+        android:inputType="number"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:maxLength="4"
+        android:layout_gravity="left"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="left"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        >
+
+    <LinearLayout
+        android:layout_gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_valorUF"
+            android:text="@string/string_valorUF"
+            android:layout_gravity="left"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_obliga"
+            android:layout_gravity="left"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+    </LinearLayout>
+
+        <EditText
+            android:id="@+id/edt_valorUF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:hint="@string/hint_valorUF"
+            android:inputType="number"
+            android:maxLength="5" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_seguro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/holo_green_dark"
+        android:textColor="@android:color/white"
+        android:text="@string/Sbtn_calcular"
+        />
+
+</LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -165,7 +202,10 @@
         android:text="@string/string_obligatorio"
         android:textColor="@android:color/holo_red_dark"
         android:layout_gravity="end"
+        android:paddingTop="40dp"
         />
+
+
 
 
 </LinearLayout>
