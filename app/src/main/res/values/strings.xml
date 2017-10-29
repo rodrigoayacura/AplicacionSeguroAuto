@@ -3,9 +3,10 @@
     <string name="string_ingresoPPU">Ingrese Patente (PPU)</string>
     <string name="hint_PPU">AA1000 ó BBBB10</string>
     <string name="hint_anio">2017</string>
-    <string name="hint_valorUF">26238</string>
+    <string name="hint_valorUF">Ej: 26238</string>
     <string name="string_anioVehiculo"> Ingrese Año del Vehículo</string>
     <string name="string_valorUF">Ingrese Valor de la UF</string>
+    <string name="string_valorUFUrl">El Valor de la UF es</string>
     <string name="Sbtn_calcular">Verificar Seguro</string>
     <string name="string_marcas">Seleccione marca Vehículo</string>
     <string name="string_modelo">Seleccione modelo Vehículo</string>

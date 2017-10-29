@@ -1,6 +1,7 @@
 package cl.inacap.aplicacionseguroauto;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.regex.Matcher;
@@ -25,6 +29,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     EditText anioVehiculo;
     EditText valorUF;
     Button verificarSeguro;
+    String url = "http://portal.unap.cl/kb/aula_virtual/serviciosremotos/datos-uf-dia.php";
+    String listadoMarcasAutos= "https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json";
+
+
+
 
 
     @Override
@@ -33,17 +42,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
 
         //Se asocian objetos con un elemento de la Interfaz
-        placaPatente = (EditText)findViewById(R.id.edt_ingresoPPU);
-        anioVehiculo = (EditText)findViewById(R.id.edt_anioVehiculo);
+        placaPatente = (EditText) findViewById(R.id.edt_ingresoPPU);
+        anioVehiculo = (EditText) findViewById(R.id.edt_anioVehiculo);
         valorUF = (EditText) findViewById(R.id.edt_valorUF);
         verificarSeguro = (Button) findViewById(R.id.btn_seguro);
 
-        listaMarcas =(Spinner)findViewById(R.id.spin_marcas);
-        listaModelos =(Spinner)findViewById(R.id.spin_modelos);
+        listaMarcas = (Spinner) findViewById(R.id.spin_marcas);
+        listaModelos = (Spinner) findViewById(R.id.spin_modelos);
+
+        new ProcessJSON().execute(url);
 
         //Se crean los adaptadores para los spinners
 
-        ArrayAdapter<CharSequence> adaptaMarca = ArrayAdapter.createFromResource(this,R.array.array_Marcas,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adaptaMarca = ArrayAdapter.createFromResource(this, R.array.array_Marcas, android.R.layout.simple_spinner_item);
 
         adaptaMarca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -53,16 +64,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         verificarSeguro.setOnClickListener(this);
 
 
-        }
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
         // Se asocia el spinner de los modelos a la marca de vehiculo
 
-        int[] modelos =  {R.array.array_Chevy,R.array.array_Ford,R.array.array_Honda,R.array.array_Nissan};
+        int[] modelos = {R.array.array_Chevy, R.array.array_Ford, R.array.array_Honda, R.array.array_Nissan};
 
-        ArrayAdapter<CharSequence> adaptaModelos = ArrayAdapter.createFromResource(this,modelos[position],android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adaptaModelos = ArrayAdapter.createFromResource(this, modelos[position], android.R.layout.simple_spinner_item);
         adaptaModelos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         listaModelos.setAdapter(adaptaModelos);
     }
@@ -77,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //Se verifica que los datos de imput no este vacío
         if (!placaPatente.getText().toString().equals("") && !anioVehiculo.getText().toString().equals("") &&
                 !valorUF.getText().toString().equals("")
-                ){
+                ) {
 
             String patente = placaPatente.getText().toString();
             int anioVeh = Integer.parseInt(anioVehiculo.getText().toString());
@@ -86,20 +97,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             String spinModelo = listaModelos.getSelectedItem().toString();
 
             //Se verifica patente en caso errado se emite Toast
-            if (verificaPPU(patente) == false){
-                Toast.makeText(getApplicationContext(),"La patente esta mal ingresada",Toast.LENGTH_SHORT).show();
+            if (verificaPPU(patente) == false) {
+                Toast.makeText(getApplicationContext(), "La patente esta mal ingresada", Toast.LENGTH_SHORT).show();
             }
             //Se verifica año del vehiculo en caso errado se emite Toast
-            if (verificaAnio(anioVeh) == false){
-                Toast.makeText(getApplicationContext(),"El año no corresponde",Toast.LENGTH_SHORT).show();
+            if (verificaAnio(anioVeh) == false) {
+                Toast.makeText(getApplicationContext(), "El año no corresponde", Toast.LENGTH_SHORT).show();
             }
             //Se verifica valor unidad de fomento en caso que se 0 se emite Toast
-            if (verificaUF(unidadFomento) == false){
+            /*if (verificaUF(unidadFomento) == false){
                 Toast.makeText(getApplicationContext(),"El valor de la Unidad de Fomento no puede ser 0",Toast.LENGTH_SHORT).show();
-            }
+            }*/
 
             //Se verifica patente, la UF y el año de vehiculo sean correctos antes de iniciar nuevo activity
-            if (verificaUF(unidadFomento) && verificaPPU(patente) && verificaAnio(anioVeh)){
+            if (/*verificaUF(unidadFomento) && */ verificaPPU(patente) && verificaAnio(anioVeh)) {
                 Intent intento = new Intent(MainActivity.this, ResultadoSeguro.class);
 
                 intento.putExtra("carroPPU", patente);
@@ -110,13 +121,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(intento);
             }
 
-        }else{
+        } else {
             // Se solicitan que cumpla con los datos requeridos
-            Toast.makeText(getApplicationContext(),"Ingrese los datos requeridos",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ingrese los datos requeridos", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public Boolean verificaPPU (String ppu){
+    public Boolean verificaPPU(String ppu) {
         // Se verifica que la patente haya sido ingresada con los valores AAAA55 ó AA5555
 
 
@@ -126,17 +137,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Matcher m = p.matcher(ppu);
         Matcher m2 = p2.matcher(ppu);
 
-        if (m.matches()){
+        if (m.matches()) {
             return true;
-        }else{if (m2.matches()){
-            return true;
-        }else{
-            return false;
-        }
+        } else {
+            if (m2.matches()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
-    public Boolean verificaUF (int uf){
+    /*public Boolean verificaUF (int uf){
         // Se verifica que el valor de la UF no sea 0
 
         if (uf > 0){
@@ -144,26 +156,61 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }else{
             return false;
         }
-    }
+    }*/
 
-    public Boolean verificaAnio (int anio){
+    public Boolean verificaAnio(int anio) {
 
         Calendar fecha = Calendar.getInstance();
         int anioActual = fecha.get(Calendar.YEAR);
-        int anioMax = anioActual+1;
+        int anioMax = anioActual + 1;
 
 
         // Se verifica que el año del vehículo no seA anterior a la construccion del primer auto
-        if (anio > anioMax){
+        if (anio > anioMax) {
             return false;
-        }else {
-            if (anio > 1984){
+        } else {
+            if (anio > 1984) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
     }
 
+    private class ProcessJSON extends AsyncTask<String, Void, String> {
+        protected String doInBackground(String... strings) {
+            String stream = null;
+            String urlString = strings[0];
+
+            HTTPDataHandler hh = new HTTPDataHandler();
+            stream = hh.GetHTTPData(urlString);
+
+            // Return the data from specified url
+            return stream;
+        }
+
+        protected void onPostExecute(String stream) {
+            //TextView tv = (TextView) findViewById(R.id.txv_resultado);
+
+            if (stream != null) {
+                try {
+                    // Obtenemos todos los datos HTTP medinte un objeto JSONObject
+                    JSONObject reader = new JSONObject(stream);
+
+                    // Obtenemos uno de los valores que necesitamos
+                    String valorApiUF = reader.getString("VALOR_UF");
+
+
+                    valorUF.setText(valorApiUF);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+    }
 }
 

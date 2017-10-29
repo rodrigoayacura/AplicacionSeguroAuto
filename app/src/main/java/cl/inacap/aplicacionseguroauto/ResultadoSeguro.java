@@ -12,6 +12,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
 
 
@@ -69,7 +70,7 @@ public class ResultadoSeguro extends AppCompatActivity {
 
         placaPatente.setText("PPU del Vehículo: "+patente);
         anioCarro.setText("Año del Vehículo: "+anioVeh);
-        montoUF.setText("Valor de la UF: "+valorFomento+" pesos");
+        montoUF.setText("Valor de la UF: $"+valorFomento+" pesos");
         marcaCarro.setText("Marca del Vehículo: "+marcaVeh);
         modeloCarro.setText("Modelo del Vehículo: "+modeloVeh);
         antiguo.setText("Antigüedad del Vehículo: "+antiguedadVeh);
@@ -149,7 +150,10 @@ public class ResultadoSeguro extends AppCompatActivity {
 
         float montoSeguro = (float) (uf *.1);
 
-        DecimalFormat df =new DecimalFormat("0.00");
+        DecimalFormatSymbols simbolo = new DecimalFormatSymbols();
+        simbolo.setDecimalSeparator(',');
+        simbolo.setGroupingSeparator('.');
+        DecimalFormat df =new DecimalFormat("###,###.##",simbolo);
 
         if (dif > 10){
             valorPago = "NO corresponde seguro";
