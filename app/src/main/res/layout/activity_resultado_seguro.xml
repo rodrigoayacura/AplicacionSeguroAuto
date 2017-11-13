@@ -14,9 +14,6 @@
     android:layout_height="wrap_content"
     >
 
-
-
-
 <TextView
     android:id="@+id/rTxt_ppu"
     android:layout_width="wrap_content"

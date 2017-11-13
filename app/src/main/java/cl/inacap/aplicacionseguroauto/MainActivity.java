@@ -5,34 +5,41 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     //Se crean los objetos a usar relacionados al layout
 
     Spinner listaMarcas;
-    Spinner listaModelos;
+    EditText modelos;
     EditText placaPatente;
     EditText anioVehiculo;
     EditText valorUF;
     Button verificarSeguro;
+    String marcaElegida;
     String url = "http://portal.unap.cl/kb/aula_virtual/serviciosremotos/datos-uf-dia.php";
-    String listadoMarcasAutos= "https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json";
-
-
+    String urlMarcasAutos= "https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json";
+    JSONArray arrayMarcas;
+    JSONObject objectMarcas;
+    ArrayList<String> listadoMarcas;
+    ArrayList<MarcasAutos> marcas;
 
 
 
@@ -46,55 +53,32 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         anioVehiculo = (EditText) findViewById(R.id.edt_anioVehiculo);
         valorUF = (EditText) findViewById(R.id.edt_valorUF);
         verificarSeguro = (Button) findViewById(R.id.btn_seguro);
-
+        modelos = (EditText) findViewById(R.id.edt_modelos);
         listaMarcas = (Spinner) findViewById(R.id.spin_marcas);
-        listaModelos = (Spinner) findViewById(R.id.spin_modelos);
+
+        listaMarcas.setOnItemSelectedListener(this);
 
         new ProcessJSON().execute(url);
-
-        //Se crean los adaptadores para los spinners
-
-        ArrayAdapter<CharSequence> adaptaMarca = ArrayAdapter.createFromResource(this, R.array.array_Marcas, android.R.layout.simple_spinner_item);
-
-        adaptaMarca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        listaMarcas.setAdapter(adaptaMarca);
-        listaMarcas.setOnItemSelectedListener(this);
+        new marcasJSON().execute(urlMarcasAutos);
 
         verificarSeguro.setOnClickListener(this);
 
-
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-
-        // Se asocia el spinner de los modelos a la marca de vehiculo
-
-        int[] modelos = {R.array.array_Chevy, R.array.array_Ford, R.array.array_Honda, R.array.array_Nissan};
-
-        ArrayAdapter<CharSequence> adaptaModelos = ArrayAdapter.createFromResource(this, modelos[position], android.R.layout.simple_spinner_item);
-        adaptaModelos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        listaModelos.setAdapter(adaptaModelos);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 
     @Override
     public void onClick(View view) {
         //Se verifica que los datos de imput no este vacío
         if (!placaPatente.getText().toString().equals("") && !anioVehiculo.getText().toString().equals("") &&
-                !valorUF.getText().toString().equals("")
+                !valorUF.getText().toString().equals("") && !modelos.getText().toString().equals("")
                 ) {
 
             String patente = placaPatente.getText().toString();
             int anioVeh = Integer.parseInt(anioVehiculo.getText().toString());
             int unidadFomento = Integer.parseInt(valorUF.getText().toString());
-            String spinMarca = listaMarcas.getSelectedItem().toString();
-            String spinModelo = listaModelos.getSelectedItem().toString();
+            //String spinMarca = listaMarcas.getSelectedItem().toString();
+            String spinMarca = marcaElegida;
+            String modeloAuto = modelos.getText().toString();
 
             //Se verifica patente en caso errado se emite Toast
             if (verificaPPU(patente) == false) {
@@ -104,20 +88,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             if (verificaAnio(anioVeh) == false) {
                 Toast.makeText(getApplicationContext(), "El año no corresponde", Toast.LENGTH_SHORT).show();
             }
-            //Se verifica valor unidad de fomento en caso que se 0 se emite Toast
-            /*if (verificaUF(unidadFomento) == false){
-                Toast.makeText(getApplicationContext(),"El valor de la Unidad de Fomento no puede ser 0",Toast.LENGTH_SHORT).show();
-            }*/
 
-            //Se verifica patente, la UF y el año de vehiculo sean correctos antes de iniciar nuevo activity
-            if (/*verificaUF(unidadFomento) && */ verificaPPU(patente) && verificaAnio(anioVeh)) {
+            if(verificaModelo(modeloAuto) == false){
+                Toast.makeText(getApplicationContext(), "Debe ingresar un modelo", Toast.LENGTH_SHORT).show();
+            }
+
+            //Se verifica patente, el año de vehiculo sean correctos antes de iniciar nuevo activity
+            if (verificaPPU(patente) && verificaAnio(anioVeh) && verificaModelo(modeloAuto)) {
+
                 Intent intento = new Intent(MainActivity.this, ResultadoSeguro.class);
 
                 intento.putExtra("carroPPU", patente);
                 intento.putExtra("carroAnio", anioVeh);
                 intento.putExtra("valorUF", unidadFomento);
                 intento.putExtra("spinnerMarca", spinMarca);
-                intento.putExtra("spinnerModelo", spinModelo);
+                intento.putExtra("modeloAuto", modeloAuto);
                 startActivity(intento);
             }
 
@@ -148,24 +133,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    /*public Boolean verificaUF (int uf){
-        // Se verifica que el valor de la UF no sea 0
-
-        if (uf > 0){
-            return true;
-        }else{
-            return false;
-        }
-    }*/
-
     public Boolean verificaAnio(int anio) {
 
         Calendar fecha = Calendar.getInstance();
         int anioActual = fecha.get(Calendar.YEAR);
-        int anioMax = anioActual + 1;
+        int mesActual = fecha.get(Calendar.MONTH);
+        mesActual = mesActual +1;
+        int anioMax = anioActual;
 
+        if(mesActual > 8){
+            anioMax = anioActual + 1;
+        }
 
-        // Se verifica que el año del vehículo no seA anterior a la construccion del primer auto
+        // Se verifica que el año del vehículo no sea anterior a la puesta en marcha de las nuevas patente AA1000
         if (anio > anioMax) {
             return false;
         } else {
@@ -177,7 +157,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    public Boolean verificaModelo (String modelo){
+        String modeloAuto = modelo.trim();
+
+        if(!modeloAuto.equals("")){
+            return true;
+        }
+            return  false;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        marcaElegida = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
     private class ProcessJSON extends AsyncTask<String, Void, String> {
+
         protected String doInBackground(String... strings) {
             String stream = null;
             String urlString = strings[0];
@@ -209,8 +210,66 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
 
             }
+
+
+
+
         }
 
     }
+
+    private class marcasJSON extends  AsyncTask<String, Void, String>{
+
+        protected String doInBackground(String... strings) {
+            String stream = null;
+            String urlString = strings[0];
+
+            HTTPDataHandler hh = new HTTPDataHandler();
+            stream = hh.GetHTTPData(urlString);
+
+            // Return the data from specified url
+            return stream;
+        }
+
+        protected void onPostExecute (String stream){
+    //
+            marcas = new ArrayList<MarcasAutos>();
+            listadoMarcas = new ArrayList<String>();
+
+
+            if (stream != null) {
+                try {
+                    // Obtenemos todos los datos HTTP medinte un objeto JSONObject
+                    objectMarcas = new JSONObject(stream);
+
+                    arrayMarcas = objectMarcas.getJSONArray("Results");
+
+                    for (int i= 0; i < arrayMarcas.length(); i++){
+                        objectMarcas = arrayMarcas.getJSONObject(i);
+
+                        MarcasAutos poblarListado = new MarcasAutos();
+
+                        poblarListado.setModeloId(objectMarcas.optString("MakeId"));
+                        poblarListado.setNombreModelo(objectMarcas.optString("MakeName"));
+                        marcas.add(poblarListado);
+
+
+                        listadoMarcas.add(objectMarcas.optString("MakeName"));
+                    }
+
+
+
+                    listaMarcas.setAdapter(new ArrayAdapter<String>(MainActivity.this,
+                            android.R.layout.simple_spinner_dropdown_item, listadoMarcas));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
+
+
 }
 

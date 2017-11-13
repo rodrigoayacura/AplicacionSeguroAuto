@@ -9,7 +9,7 @@
     <string name="string_valorUFUrl">El Valor de la UF es</string>
     <string name="Sbtn_calcular">Verificar Seguro</string>
     <string name="string_marcas">Seleccione marca Vehículo</string>
-    <string name="string_modelo">Seleccione modelo Vehículo</string>
+    <string name="string_modelo">Ingrese modelo del Vehículo</string>
     <string name="string_obligatorio">Datos Obligatorios (*) </string>
     <string name="string_obliga">(*)</string>
     <color name="noSeguro">#f00</color>

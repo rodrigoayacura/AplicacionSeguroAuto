@@ -64,13 +64,12 @@
 
     <Spinner
         android:id="@+id/spin_marcas"
-        android:layout_width="160dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:backgroundTint="@android:color/holo_green_dark">
 
     </Spinner>
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,16 +80,17 @@
         android:paddingTop="20dp"
         />
 
-    <Spinner
-        android:id="@+id/spin_modelos"
+    <EditText
+        android:id="@+id/edt_modelos"
         android:layout_gravity="left"
         android:layout_width="160dp"
         android:backgroundTint="@android:color/holo_green_dark"
+        android:inputType="textCapCharacters"
         android:layout_height="wrap_content"
+        android:digits="0,1,2,3,4,5,6,7,8,9,ABCDEFGHIJKLMNOPQRSTUVWXYZ,.,-, ,"
+        android:singleLine="true"
 
-        >
-
-    </Spinner>
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -201,8 +201,8 @@
         android:layout_height="wrap_content"
         android:text="@string/string_obligatorio"
         android:textColor="@android:color/holo_red_dark"
-        android:layout_gravity="end"
-        android:paddingTop="40dp"
+        android:layout_gravity="center"
+        android:paddingTop="10dp"
         />
 
 

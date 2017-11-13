@@ -59,7 +59,7 @@ public class ResultadoSeguro extends AppCompatActivity {
         int anioVeh = datosSeguro.getInt("carroAnio");
         int valorFomento = datosSeguro.getInt("valorUF");
         String marcaVeh =extras.getStringExtra("spinnerMarca");
-        String modeloVeh =extras.getStringExtra("spinnerModelo");
+        String modeloVeh =extras.getStringExtra("modeloAuto");
         String antiguedadVeh;
         String asegurable;
 
@@ -70,7 +70,7 @@ public class ResultadoSeguro extends AppCompatActivity {
 
         placaPatente.setText("PPU del Vehículo: "+patente);
         anioCarro.setText("Año del Vehículo: "+anioVeh);
-        montoUF.setText("Valor de la UF: $"+valorFomento+" pesos");
+        montoUF.setText(UFdecimal(valorFomento));
         marcaCarro.setText("Marca del Vehículo: "+marcaVeh);
         modeloCarro.setText("Modelo del Vehículo: "+modeloVeh);
         antiguo.setText("Antigüedad del Vehículo: "+antiguedadVeh);
@@ -174,6 +174,23 @@ public class ResultadoSeguro extends AppCompatActivity {
         }
 
 
+    }
+
+    public String UFdecimal (int uf){
+        //Método para calcular el valor a pagar por el seguro del vehículo
+
+        String valorUF;
+
+        DecimalFormatSymbols simbolo = new DecimalFormatSymbols();
+        simbolo.setDecimalSeparator(',');
+        simbolo.setGroupingSeparator('.');
+        DecimalFormat df =new DecimalFormat("###,###.##",simbolo);
+
+            valorUF= "Valor de la UF: $"+df.format(uf)+" pesos";
+
+
+
+        return valorUF;
     }
 
 

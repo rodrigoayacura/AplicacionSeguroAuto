@@ -3,21 +3,129 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="bacad4e65216de79b64f926c8f344f4a468d8191">
-        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_9924d1d3d17d6b18e8447a48e11fbe7b1e48462d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_63f4fadde243b73dda3489c5ea48f54add485cc7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\.android\build-cache\2df209e2e6b980f1260bb9067de25ab374ccd158\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bff3ef69ba1516fb9a69d39b8c607425a32eb204\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\.android\build-cache\b14f235ed4344a16b3b4f9b0816a28c69f659b07\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_415242808a63a4d85cb1564c310799ae7132199b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\.android\build-cache\6d54fa5d4437d8a7327c39d6d0f59ddbebdc7b5c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_11303b8344f5a465d522dba030c8dff7b13a014e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="1e6b4f47afef09fbbef55ae65b3b6a9ead4999a4">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_9924d1d3d17d6b18e8447a48e11fbe7b1e48462d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\.android\build-cache\584c18e0b0fd53abb1cd6baefd64c0f8c90652ed\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b32ace0476b0a87c1ead76efcd23dcfbee78e9d5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\26.0.0-alpha1\support-annotations-26.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-26.0.0-alpha1_d31fb42ca392f52b26bb0b689ec5db0bcf3314c2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\.android\build-cache\e303aadc12e8f51b0d3c40e34148a8bca3f37a9d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_630a193900baed1af852e843e54c7464414dfdc3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\.android\build-cache\f3e7ee677884f56509c7d950b5a6984e70712cb1\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_16e466a87a845ae0a227cb72f6d0d76ec23f6adb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\AppData\Local\Android\Sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_2e7964a1de05f535be730fd132c8e78896b06aeb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\.android\build-cache\6e1d50df83d293db2e737376470aa66dcdac0b19\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_38666fcd96807f4723e5355b4f548a434017ebcf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\.android\build-cache\c85e8f0e1c0c26fbc693b79f838675101aab5c81\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_93b3e0ec7f35a13736210c5a449d2b056fa49b9b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\.android\build-cache\d8f9eed002213c542ecc86bf43ccd3198e35da81\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4571850a0c65c73e6397843f1c465ff9d1e248dd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Ikaro\.android\build-cache\8c881868ec2b8854201a736b5e9363ecaef80f37\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="C:\Users\Ikaro\Desktop\Trabajos\AplicacionesMoviles\AplicacionSeguroAuto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_97d0c839290eee15fad33a5d4d8f1bd49d60cf4a\classes.dex" />
     </item>
 
 </items>
